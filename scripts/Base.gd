@@ -1,5 +1,6 @@
 extends Sprite2D
 @onready var bird = $"../../Bird"
+var _temp
 
 func _process(_delta):
 	if not bird.dead: position.x -= 2
