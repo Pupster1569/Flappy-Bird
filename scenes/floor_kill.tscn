@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddaoy642ol1b6"]
+
+[ext_resource type="Script" path="res://scripts/floorKill.gd" id="1_u8prx"]
+
+[node name="floorKill" type="Area2D"]
+script = ExtResource("1_u8prx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="ready" from="Timer" to="." method="_on_timer_ready"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

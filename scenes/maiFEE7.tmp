@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://crw03ypqy0qtt"]
+
+[ext_resource type="Script" path="res://scripts/Score.gd" id="1_8know"]
+[ext_resource type="PackedScene" uid="uid://bdc4ddua8572g" path="res://scenes/bird.tscn" id="1_468oy"]
+[ext_resource type="Texture2D" uid="uid://cimgqueou7mal" path="res://assets/sprites/base.png" id="2_sab6e"]
+[ext_resource type="Texture2D" uid="uid://dft3l44jkhexd" path="res://assets/sprites/background-day.png" id="3_k804t"]
+[ext_resource type="PackedScene" uid="uid://ddaoy642ol1b6" path="res://scenes/floor_kill.tscn" id="4_4e34f"]
+[ext_resource type="PackedScene" uid="uid://bodhpoffslf6k" path="res://scenes/pipe.tscn" id="5_li2ki"]
+[ext_resource type="PackedScene" uid="uid://dtojvpuqyy27h" path="res://scenes/start_screen.tscn" id="6_jjst1"]
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="7_l5ms2"]
+[ext_resource type="PackedScene" uid="uid://de3ffxpuqnx5u" path="res://scenes/game_over.tscn" id="8_x8f3w"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="9_wacil"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fv2h7"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Score" type="HBoxContainer" parent="."]
+offset_left = 132.0
+offset_top = 34.0
+offset_right = 172.0
+offset_bottom = 74.0
+script = ExtResource("1_8know")
+
+[node name="Bird" parent="." instance=ExtResource("1_468oy")]
+z_index = 1
+position = Vector2(144, 298)
+
+[node name="background" type="Node" parent="."]
+
+[node name="Background-day" type="Sprite2D" parent="background"]
+z_index = -2
+position = Vector2(144, 258)
+texture = ExtResource("3_k804t")
+
+[node name="Base" type="Sprite2D" parent="background"]
+position = Vector2(168, 566)
+texture = ExtResource("2_sab6e")
+
+[node name="floorKill" parent="." instance=ExtResource("4_4e34f")]
+position = Vector2(287, 507)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floorKill"]
+shape = SubResource("WorldBoundaryShape2D_fv2h7")
+
+[node name="pipes" type="Node" parent="."]
+
+[node name="Pipe" parent="pipes" instance=ExtResource("5_li2ki")]
+position = Vector2(361, 534)
+
+[node name="Pipe2" parent="pipes" instance=ExtResource("5_li2ki")]
+position = Vector2(547, 486)
+
+[node name="overlays" type="Node" parent="."]
+
+[node name="start_screen" parent="overlays" instance=ExtResource("6_jjst1")]
+position = Vector2(144, 250)
+script = ExtResource("7_l5ms2")
+
+[node name="game_over" parent="overlays" instance=ExtResource("8_x8f3w")]
+position = Vector2(148, 138)
+script = ExtResource("9_wacil")

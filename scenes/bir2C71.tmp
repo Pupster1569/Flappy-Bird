@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdc4ddua8572g"]
+
+[ext_resource type="Texture2D" uid="uid://cmsov48an4bhy" path="res://assets/sprites/yellow_bird_sprite_sheet.png" id="1_pxkcv"]
+[ext_resource type="Script" path="res://scripts/bird.gd" id="1_xfw7f"]
+[ext_resource type="AudioStream" uid="uid://b81hi2aopne7j" path="res://assets/audio/wing.wav" id="3_5b74p"]
+[ext_resource type="AudioStream" uid="uid://4xqdnsxo0lhf" path="res://assets/audio/hit.wav" id="4_4u6jy"]
+[ext_resource type="AudioStream" uid="uid://dv0dqfgjy3hx1" path="res://assets/audio/die.wav" id="5_i7li1"]
+[ext_resource type="AudioStream" uid="uid://7uv4lf2top0v" path="res://assets/audio/point.wav" id="6_fgy1u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kexic"]
+atlas = ExtResource("1_pxkcv")
+region = Rect2(0, 0, 34, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqlh6"]
+atlas = ExtResource("1_pxkcv")
+region = Rect2(34, 0, 34, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv44t"]
+atlas = ExtResource("1_pxkcv")
+region = Rect2(68, 0, 34, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg1uh"]
+atlas = ExtResource("1_pxkcv")
+region = Rect2(102, 0, 34, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lc77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kexic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqlh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv44t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg1uh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcffa"]
+radius = 11.0
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_xfw7f")
+
+[node name="flap_anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0lc77")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jcffa")
+
+[node name="wing_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5b74p")
+
+[node name="death_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4u6jy")
+volume_db = -5.0
+
+[node name="pipe_death_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_i7li1")
+
+[node name="scored_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fgy1u")

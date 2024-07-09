@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtojvpuqyy27h"]
+
+[ext_resource type="Texture2D" uid="uid://c7fuhb286gixp" path="res://assets/sprites/message.png" id="1_xuhat"]
+[ext_resource type="AudioStream" uid="uid://c3lx3l7qx306w" path="res://assets/audio/swoosh.wav" id="2_fpsr6"]
+
+[node name="start_screen" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_xuhat")
+
+[node name="start_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_fpsr6")
